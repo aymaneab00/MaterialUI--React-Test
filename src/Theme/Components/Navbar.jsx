@@ -3,16 +3,19 @@ import {
   Avatar,
   Badge,
   Box,
+  Menu,
+  MenuItem,
   Toolbar,
   Typography,
   styled,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { InputBase } from "@mui/material";
 import MailIcon from "@mui/icons-material/Email";
-
+import yeezus from "./Yeezus.jpeg"
 import AdbIcon from "@mui/icons-material/Adb";
 export default function Navbar() {
+  const [open, setopen] =useState(false)
   const Mytoolbar = styled(Toolbar)({
     display: "flex",
     justifyContent: "space-between",
@@ -40,7 +43,7 @@ export default function Navbar() {
       <AppBar position="static">
         <Mytoolbar>
           <h6>
-            Aymane
+            TestSite
             <AdbIcon /> {/* sx={{display: {xs:'none'}}} */}
           </h6>
           <Search>
@@ -53,14 +56,35 @@ export default function Navbar() {
 
             <UserBox>
               <Avatar
+            onClick={()=>setopen(true)}
                 sx={{ width: 30, height: 30 }}
                 alt="Remy Sharp"
-                src="/static/images/avatar/1.jpg"
+                src={yeezus}
               />
               <Typography variant="span">Aymane</Typography>
             </UserBox>
           </Icons>
         </Mytoolbar>
+        <Menu
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
+        // anchorEl={anchorEl}
+        open={open}
+         onClose={()=>setopen(false)}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+      >
+        <MenuItem >Profile</MenuItem>
+        <MenuItem >My account</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Menu>
+
       </AppBar>
     </Box>
   );
